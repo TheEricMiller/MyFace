@@ -1,6 +1,8 @@
 Myface::Application.routes.draw do
   resources :statuses
 
+  root :to => 'statuses#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
