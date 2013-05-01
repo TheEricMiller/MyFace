@@ -1,0 +1,11 @@
+user1fix:
+  email: 'user1fix@test.com'
+  profile_name: 'User1fix'
+  first_name: 'Jimmy'
+  last_name: 'John'
+
+user2fix:
+  email: 'user2fix@test.com'
+  profile_name: 'User2fix'
+  first_name: 'Jazz'
+  last_name: 'Jacobs'

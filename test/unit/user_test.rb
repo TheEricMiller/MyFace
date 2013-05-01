@@ -21,19 +21,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "a user should have a unique profile name" do
   	user = User.new
-  	user.email = 'AgentJ@test.com'
-  	user.profile_name = 'AgentJ'
-  	user.first_name = 'Jimmy'
-  	user.last_name = 'John'
-  	user.password = 'password123'
-  	user.save
-
-  	user = User.new
-  	user.email = 'AgentZ@test.com'
-  	user.profile_name = 'AgentJ'
-  	user.first_name = 'Jazz'
-  	user.last_name = 'Jacobs'
-  	user.password = 'password123'
+  	user.profile_name = users(:user1fix).profile_name
   	assert !user.save
   	#puts user.errors.inspect
   	assert !user.errors[:profile_name].empty?
