@@ -11,6 +11,7 @@ Myface::Application.routes.draw do
 
   resources :statuses
   get 'feed', to: 'statuses#index', as: :feed
+  get '/:id', to: 'profiles#show'
 
   root :to => 'statuses#index'
 
