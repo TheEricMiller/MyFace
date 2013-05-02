@@ -1,4 +1,6 @@
 Myface::Application.routes.draw do
+  get "profiles/show"
+
   devise_for :users
   devise_scope :user do
     get 'sign_up', :to => 'devise/registrations#new', as: :sign_up
@@ -9,6 +11,7 @@ Myface::Application.routes.draw do
 
   resources :statuses
   get 'feed', to: 'statuses#index', as: :feed
+  get '/:id', to: 'profiles#show'
 
   root :to => 'statuses#index'
 
