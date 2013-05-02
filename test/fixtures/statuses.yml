@@ -2,6 +2,8 @@
 
 one:
   content: MyText
+  user: user1fix
 
 two:
   content: MyText
+  user: user1fix
