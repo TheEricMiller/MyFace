@@ -9,6 +9,8 @@ Myface::Application.routes.draw do
     get 'account', to: 'devise/registrations#edit', as: :account
   end
 
+  resources :user_friendships
+
   resources :statuses
   get 'feed', to: 'statuses#index', as: :feed
   get '/:id', to: 'profiles#show'
