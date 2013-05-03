@@ -16,7 +16,11 @@ Myface::Application.routes.draw do
     delete '/sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  resources :user_friendships
+  resources :user_friendships do
+    member do
+      put :accept
+    end
+  end
 
   resources :statuses
   get 'feed', to: 'statuses#index', as: :feed
