@@ -18,6 +18,7 @@
 	      </ul>
 	      <ul class="nav pull-right">
 	      	<% if user_signed_in? %>
+	      		<li><%= link_to 'Friends', user_friendships_path %></li>
 		      	<li><%= link_to current_user.full_name, account_path %></li>
 		      	<li><%= link_to "Sign Out", sign_out_path %></li>
 	      	<% else %>
