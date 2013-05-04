@@ -34,13 +34,13 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 
       should "display pending information on a pending friendship" do
         assert_select "#user_friendship_#{@friendship1.id}" do
-          assert_select "em", "Friendship is Pending."
+          assert_select "em", "Friendship Pending"
         end
       end
 
       should "display date information on am accepted friendship" do
         assert_select "#user_friendship_#{@friendship2.id}" do
-          assert_select "em", "Friends Since #{@friendship2.updated_at}."
+          assert_select "em", "Friends Since #{@friendship2.updated_at}"
         end
       end
 
@@ -129,14 +129,21 @@ class UserFriendshipsControllerTest < ActionController::TestCase
         end
 
         should "redirect to root path" do 
-          assert_response :redirect
           assert_redirected_to root_path
+        end
+      end
+
+      context "successfully" do
+        should "create two user friendship objects" do
+          assert_difference 'UserFriendship.count', 2 do
+            post :create, user_friendship: { friend_id: users(:mike).profile_name }
+          end
         end
       end
 
       context "with a valid friend_id" do
         setup do
-          post :create, user_friendship: { friend_id: users(:mike) }
+          post :create, user_friendship: { friend_id: users(:mike).profile_name }
         end
 
         should "assign a friend object" do
@@ -150,7 +157,6 @@ class UserFriendshipsControllerTest < ActionController::TestCase
           assert_equal users(:mike), assigns(:user_friendship).friend
         end
 
-
         should "create a friendship" do
           assert users(:user1fix).pending_friends.include?(users(:mike))
         end
@@ -162,7 +168,7 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 
         should "set the flash success message" do
           assert flash[:success]
-          assert_equal "You are now friends with #{users(:mike).full_name}", flash[:success]
+          assert_equal "Friend request sent.", flash[:success]
         end
       end
 
@@ -180,7 +186,9 @@ class UserFriendshipsControllerTest < ActionController::TestCase
 
     context "when logged in" do
       setup do
-        @user_friendship = create(:pending_user_friendship, user: users(:user1fix))
+        @friend = create(:user)
+        @user_friendship = create(:pending_user_friendship, user: users(:user1fix), friend: @friend)
+        create(:pending_user_friendship, friend: users(:user1fix), user: @friend)
         sign_in users(:user1fix)
         put :accept, id: @user_friendship
         @user_friendship.reload
@@ -229,7 +237,38 @@ class UserFriendshipsControllerTest < ActionController::TestCase
         assert assigns(:friend)
       end
     end
+  end
 
+
+  context "#destroy" do
+    context "when not logged in" do
+      should "redirect to the login page" do
+        delete :destroy, id: 1
+        assert_response :redirect
+        assert_redirected_to sign_in_path
+      end
+    end
+
+    context "when logged in" do
+      setup do
+        @friend = create(:user)
+        @user_friendship = create(:accepted_user_friendship, friend: @friend, user: users(:user1fix))
+        create(:accepted_user_friendship, friend: users(:user1fix), user: @friend)
+        
+        sign_in users(:user1fix)
+      end
+
+      should "delete user friendships" do
+        assert_difference 'UserFriendship.count', -2 do
+          delete :destroy, id: @user_friendship
+        end
+      end
+
+      should "set the flash" do
+        delete :destroy, id: @user_friendship
+        assert_equal "Friendship destroyed", flash[:success]
+      end
+    end
   end
 
 
