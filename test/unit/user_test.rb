@@ -71,4 +71,13 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'User1fix', users(:user1fix).to_param
   end
 
+  context "#has_blocked?" do
+    should "return true if a user has blocked another user" do
+      assert users(:user1fix).has_blocked?(users(:blocked_friend))
+    end
+    should "return false if a user has not blocked another user" do
+      assert !users(:user1fix).has_blocked?(users(:mike))
+    end
+  end
+
 end
