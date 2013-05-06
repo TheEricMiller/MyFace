@@ -61,7 +61,7 @@ module Myface
 
 
 
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
 
   end
 end
