@@ -16,3 +16,9 @@ mike:
   profile_name: 'MikeTheFrong'
   first_name: 'Mike'
   last_name: 'The Frog'
+
+blocked_friend:
+  email: 'blocked@teamtreehouse.com'
+  profile_name: 'YouBl0ckedME'
+  first_name: 'Blocked'
+  last_name: 'Friend'
