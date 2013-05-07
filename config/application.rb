@@ -79,8 +79,6 @@ module Myface
             :enable_starttls_auto => true
         }
 
-        config.action_mailer.default.from = ENV["ACT_MAILER_FROM_ADDRESS"]
-
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
