@@ -57,6 +57,9 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
+    figaro (0.6.4)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hike (1.2.2)
     i18n (0.6.1)
     journey (1.0.4)
@@ -146,6 +149,7 @@ DEPENDENCIES
   devise
   draper (~> 1.0)
   factory_girl_rails
+  figaro
   jquery-rails
   js-routes
   pg

@@ -1,0 +1,71 @@
+# =======================================
+# =           ACTIVE SECRETS            =
+# =======================================
+
+ADMIN_EMAIL: user@example.com
+ADMIN_PASSWORD: changeME123
+ROLES: [master, admin, user]
+
+# =======================================
+
+development:
+  ACT_MAILER_HOST: "localhost:3000"
+  ACT_MAILER_SMTP_ADDRESS: "localhost"
+  ACT_MAILER_SMTP_PORT: "1025"
+
+
+staging:
+  ACT_MAILER_HOST: "app-stage.herokuapp.com"
+  ACT_MAILER_SMTP_ADDRESS: "smtp.gmail.com"
+  ACT_MAILER_SMTP_USER_NAME: "USER@gmail.com"
+  ACT_MAILER_SMTP_PASSWORD: "PASS"
+
+
+production:
+  ACT_MAILER_HOST: "app.herokuapp.com"
+  ACT_MAILER_SMTP_ADDRESS: "smtp.gmail.com"
+  ACT_MAILER_SMTP_USER_NAME: "USER@gmail.com"
+  ACT_MAILER_SMTP_PASSWORD: "PASS"
+
+
+test:
+  ACT_MAILER_HOST: "test.local"
+  ACT_MAILER_SMTP_ADDRESS: "localhost"
+  ACT_MAILER_SMTP_PORT: "1025"
+
+
+# =======================================
+# =             ActionMailer            =
+# =  (can overide in environment above) =
+# =======================================
+ACT_MAILER_SMTP_ADDRESS: "no-host"
+ACT_MAILER_SMTP_USER_NAME: "no-user"
+ACT_MAILER_SMTP_PASSWORD: "no-pass"
+ACT_MAILER_SMTP_DOMAIN: "no-domain.com"
+ACT_MAILER_SMTP_AUTH: "plain"
+ACT_MAILER_SMTP_PORT: "587"
+# =======================================
+# = ActionMailer SMTP Provider Settings =
+# =======================================
+#      MAILCATCHER FOR DEVELOPMENT
+#     In terminal...
+#       $ gem install mailcatcher
+#       $ mailcatcher
+#     Go to http://localhost:1080/
+#  ACT_MAILER_SMTP_ADDRESS: "localhost"
+#  ACT_MAILER_SMTP_PORT: "1025"
+# =======================================
+#  ACT_MAILER_SMTP_ADDRESS: "smtp.gmail.com"
+# ~~~~~~~~~~~~
+#  ACT_MAILER_SMTP_ADDRESS: "smtp.mandrillapp.com"
+# ~~~~~~~~~~~~
+#  ACT_MAILER_SMTP_ADDRESS: "smtp.sendgrid.net"
+# ~~~~~~~~~~~~
+#  ACT_MAILER_SMTP_ADDRESS: "email-smtp.us-east-1.amazonaws.com"
+# ~~~~~~~~~~~~
+#  ACT_MAILER_SMTP_USER_NAME: "USER"
+#  ACT_MAILER_SMTP_PASSWORD: "PASS"
+#  ACT_MAILER_SMTP_DOMAIN: "anydomain.com"
+#  ACT_MAILER_SMTP_AUTH: "plain"
+#  ACT_MAILER_SMTP_PORT: "587"
+# =======================================
