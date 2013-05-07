@@ -11,6 +11,25 @@ class StatusesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:statuses)
   end
 
+
+  test "should not display user's posts when NOT logged in" do
+    users(:blocked_friend).statuses.create(content: 'Blocked status')
+    users(:user2fix).statuses.create(content: 'Non-blocked status')
+    get :index
+    assert_match /Non\-blocked status/, response.body
+    assert_match /Blocked\ status/, response.body
+  end
+
+
+  test "should not display blocked user's posts when logged in" do
+    sign_in users(:user1fix)
+    users(:blocked_friend).statuses.create(content: 'Blocked status')
+    users(:user2fix).statuses.create(content: 'Non-blocked status')
+    get :index
+    assert_match /Non\-blocked status/, response.body
+    assert_no_match /Blocked\ status/, response.body
+  end
+
   test "should be redirected when not logged in" do
     get :new
     assert_response :redirect
@@ -37,6 +56,16 @@ class StatusesControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to status_path(assigns(:status))
+  end
+
+  test "should create status for current user when logged in" do
+    sign_in users(:user1fix)
+    assert_difference('Status.count') do
+      post :create, status: { content: @status.content, user_id: users(:user2fix).id }
+    end
+
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:user1fix).id
   end
 
   test "should show status" do
@@ -66,6 +95,20 @@ class StatusesControllerTest < ActionController::TestCase
     sign_in users(:user1fix)
     put :update, id: @status, status: { content: @status.content }
     assert_redirected_to status_path(assigns(:status))
+  end
+
+  test "should update status for the current user when logged in" do
+    sign_in users(:user1fix)
+    put :update, id: @status, status: { content: @status.content, user_id: users(:user2fix).id }
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:user1fix).id
+  end
+
+  test "should not update status if nothing has chenged" do
+    sign_in users(:user1fix)
+    put :update, id: @status
+    assert_redirected_to status_path(assigns(:status))
+    assert_equal assigns(:status).user_id, users(:user1fix).id
   end
 
   test "should destroy status" do

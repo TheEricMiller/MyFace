@@ -1,17 +1,31 @@
 Myface::Application.routes.draw do
   get "profiles/show"
 
-  devise_for :users
-  devise_scope :user do
-    get 'sign_up', :to => 'devise/registrations#new', as: :sign_up
-    get 'sign_in', to: 'devise/sessions#new', as: :sign_in
-    get 'sign_out', to: 'devise/sessions#destroy', as: :sign_out
-    get 'account', to: 'devise/registrations#edit', as: :account
+  
+  as :user do
+    get '/sign_up', :to => 'devise/registrations#new', as: :sign_up
+    get '/sign_in', to: 'devise/sessions#new', as: :sign_in
+    get '/sign_out', to: 'devise/sessions#destroy', as: :sign_out
+    get '/account', to: 'devise/registrations#edit', as: :account
+  end
+  devise_for :users, skip: [:sessions]
+
+  as :user do
+    get '/sign_in', to: 'devise/sessions#new', as: :new_user_session
+    post '/sign_in', to: 'devise/sessions#create', as: :user_session
+    delete '/sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  resources :user_friendships do
+    member do
+      put :accept
+      put :block
+    end
   end
 
   resources :statuses
   get 'feed', to: 'statuses#index', as: :feed
-  get '/:id', to: 'profiles#show'
+  get '/:id', to: 'profiles#show', as: 'profile'
 
   root :to => 'statuses#index'
 

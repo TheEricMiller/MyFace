@@ -3,9 +3,22 @@ user1fix:
   profile_name: 'User1fix'
   first_name: 'Jimmy'
   last_name: 'John'
+  encrypted_password: $2a$10$Fh/Hm8RxDsuPTeBUr6864.GARlcmt7zF2WspaXGr3BIv2C27N.osq
 
 user2fix:
   email: 'user2fix@test.com'
   profile_name: 'User2fix'
   first_name: 'Jazz'
   last_name: 'Jacobs'
+
+mike:
+  email: 'mike@teamtreehouse.com'
+  profile_name: 'MikeTheFrong'
+  first_name: 'Mike'
+  last_name: 'The Frog'
+
+blocked_friend:
+  email: 'blocked@teamtreehouse.com'
+  profile_name: 'YouBl0ckedME'
+  first_name: 'Blocked'
+  last_name: 'Friend'
