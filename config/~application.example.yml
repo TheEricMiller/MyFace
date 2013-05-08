@@ -4,7 +4,11 @@
 
 ADMIN_EMAIL: user@example.com
 ADMIN_PASSWORD: changeME123
-ROLES: [master, admin, user]
+#ROLES: [master, admin, user]
+
+AWS_ACCESS_KEY_ID: "1234ACCESSKEYID4321"
+AWS_SECRET_ACCESS_KEY: "blPusa34mv12randomcharasHm4Hurflkxc"
+AWS_BUCKET: "MyFace-dev"
 
 # =======================================
 
@@ -22,6 +26,7 @@ staging:
 
 
 production:
+  AWS_BUCKET: "MyFace"
   ACT_MAILER_HOST: "app.herokuapp.com"
   ACT_MAILER_SMTP_ADDRESS: "smtp.gmail.com"
   ACT_MAILER_SMTP_USER_NAME: "USER@gmail.com"
