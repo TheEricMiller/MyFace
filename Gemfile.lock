@@ -33,6 +33,10 @@ GEM
     bourne (1.4.0)
       mocha (~> 0.13.2)
     builder (3.0.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.1)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -40,6 +44,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    daemons (1.1.9)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -50,6 +55,7 @@ GEM
       activesupport (>= 3.0)
       request_store (~> 1.0.3)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -69,6 +75,7 @@ GEM
     js-routes (0.9.0)
       rails (>= 3.2)
     json (1.7.7)
+    log_buddy (0.7.0)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -79,6 +86,12 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.7.2)
     orm_adapter (0.4.0)
+    paperclip (3.4.1)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.0)
+      mime-types
     pg (0.15.1)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -129,6 +142,10 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
     state_machine (1.2.0)
+    thin (1.5.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.3.7)
     treetop (1.4.12)
@@ -152,6 +169,8 @@ DEPENDENCIES
   figaro
   jquery-rails
   js-routes
+  log_buddy
+  paperclip
   pg
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
@@ -159,4 +178,5 @@ DEPENDENCIES
   simple_form
   sqlite3
   state_machine
+  thin
   uglifier (>= 1.0.3)
