@@ -13,6 +13,7 @@ gem 'state_machine'
 gem 'draper', '~>1.0'
 gem 'js-routes'
 gem 'paperclip'
+gem 'aws-sdk'
 
 
 group :test do
