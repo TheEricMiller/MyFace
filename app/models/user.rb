@@ -39,7 +39,21 @@ class User < ActiveRecord::Base
                                       conditions: { state: 'accepted' }
   has_many :accepted_friends, through: :accepted_user_friendships, source: :friend
 
-  has_attached_file :avatar
+  has_attached_file :avatar, styles: {
+    large: "800x800>",
+    medium: "300x200>",
+    small: "260x180>",
+    thumb: "80x80#"
+  }
+
+  def self.get_gravatars
+    all.each do |user|
+      if !user.avatar?
+        user.avatar = URI.parse(user.gravatar_url)
+        user.save
+      end
+    end
+  end
 
   def full_name
   	first_name + " " + last_name
