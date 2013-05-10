@@ -16,5 +16,5 @@
 <% end %>
 
 
-<%= link_to 'Edit', edit_status_path(@status) %> |
+<%= link_to 'Edit', edit_status_path(@status) if signed_in? && current_user.id == status.user_id %> |
 <%= link_to 'Back', statuses_path %>
