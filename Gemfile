@@ -14,6 +14,7 @@ gem 'draper', '~>1.0'
 gem 'js-routes'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'rmagick'
 
 
 group :test do
