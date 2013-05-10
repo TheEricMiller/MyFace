@@ -76,7 +76,7 @@ seed_user.statuses.create(content: "Hello, world!")
 jim.statuses.create(content: "Hi, I'm Jim")
 nick.statuses.create(content: "Hello from the internet!")
 mike.statuses.create(content: "I want to learn html javapress")
-ryan.statuses.create(content: "Treebook is awesome!")
+ryan.statuses.create(content: "MyFace is awesome!")
 
 UserFriendship.request(seed_user, jim).accept!
 UserFriendship.request(seed_user, nick).block!
