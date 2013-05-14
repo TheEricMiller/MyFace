@@ -2,7 +2,7 @@ class Document < ActiveRecord::Base
   attr_accessible :attachment, :remove_attachment
   
   has_attached_file :attachment,
-  path: ":attachment/:basename.:extension"
+  path: ":attachment/:basename__:param.:extension"
 
   validates_attachment :attachment,
   size: { :in => 0..5.megabytes },
