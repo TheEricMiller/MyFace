@@ -1,6 +1,21 @@
 class Document < ActiveRecord::Base
   attr_accessible :attachment, :remove_attachment
-  has_attached_file :attachment
+  
+  has_attached_file :attachment,
+  path: ":attachment/:basename.:extension"
+
+  validates_attachment :attachment,
+  size: { :in => 0..5.megabytes },
+  content_type: { :content_type => [
+  					'image/jpeg', 
+  					'image/jpg', 
+  					'image/png', 
+  					'text/plain', 
+  					'audio/mpeg', 
+  					'application/pdf',
+  					'application/zip'
+  				]}
+
 
   attr_accessor :remove_attachment
 

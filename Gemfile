@@ -14,11 +14,18 @@ gem 'draper', '~>1.0'
 gem 'js-routes'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'rmagick'
 
 
 group :test do
   gem 'shoulda'
   gem 'factory_girl_rails'
+end
+
+group :development do
+  gem 'better_errors'
+    gem 'binding_of_caller'
+  gem 'rails-erd'
 end
 
 group :development, :test do
