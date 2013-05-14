@@ -39,16 +39,23 @@ class User < ActiveRecord::Base
                                       conditions: { state: 'accepted' }
   has_many :accepted_friends, through: :accepted_user_friendships, source: :friend
 
-  has_attached_file :avatar, styles: {
-    large: "800x800>",
-    medium: "300x200>",
-    small: "260x180>",
-    thumb: "80x80#"
+  has_attached_file :avatar, 
+  path: ":attachment/:id_:basename_:style.:extension",
+  styles: {
+    large: ["800x800>", :jpg],
+    medium: ["300x200>", :png],
+    small: ["260x180>", :png],
+    thumb: ["80x80#", :png]
   }
+  validates_attachment :avatar,
+  content_type: { :content_type => ['image/jpeg', 'image/jpg', 'image/png'] },
+  size: { :in => 0..3.megabytes }
+
 
   def self.get_gravatars
     all.each do |user|
-      if !user.avatar?
+      if !user.avatar.exists?
+        
         user.avatar = URI.parse(user.gravatar_url)
         user.save
         print "."
@@ -68,8 +75,7 @@ class User < ActiveRecord::Base
     stripped_email = email.strip
     downcased_email = stripped_email.downcase 
     hash = Digest::MD5.hexdigest(downcased_email)
-
-    "http://gravatar.com/avatar/#{hash}?d=mm"
+    "http://gravatar.com/avatar/#{hash}.jpg?d=mm&s=900"
   end
 
 
@@ -81,3 +87,4 @@ class User < ActiveRecord::Base
 
 
 end
+

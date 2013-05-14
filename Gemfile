@@ -22,6 +22,12 @@ group :test do
   gem 'factory_girl_rails'
 end
 
+group :development do
+  gem 'better_errors'
+    gem 'binding_of_caller'
+  gem 'rails-erd'
+end
+
 group :development, :test do
   gem 'sqlite3'
   gem 'log_buddy'
