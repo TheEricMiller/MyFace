@@ -53,6 +53,7 @@ class User < ActiveRecord::Base
 
 
   def self.get_gravatars
+    puts "\nImporting avatars from gravatar"
     all.each do |user|
       if !user.avatar.exists?
         
@@ -61,6 +62,7 @@ class User < ActiveRecord::Base
         print "."
       end
     end
+    puts "\nAvatars Updated.\n"
   end
 
   def full_name
