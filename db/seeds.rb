@@ -8,6 +8,8 @@
 
 DEFAULT_INSECURE_PASSWORD = ENV["ADMIN_PASSWORD"]
 
+ActionMailer::Base.delivery_method = :test
+
 User.create({
   first_name: "Eric",
   last_name: "Miller",
@@ -74,9 +76,16 @@ seed_user.statuses.create(content: "Hello, world!")
 jim.statuses.create(content: "Hi, I'm Jim")
 nick.statuses.create(content: "Hello from the internet!")
 mike.statuses.create(content: "I want to learn html javapress")
-ryan.statuses.create(content: "Treebook is awesome!")
+ryan.statuses.create(content: "MyFace is awesome!")
 
 UserFriendship.request(seed_user, jim).accept!
 UserFriendship.request(seed_user, nick).block!
 UserFriendship.request(seed_user, mike)
 UserFriendship.request(ryan, seed_user)
+
+
+ActionMailer::Base.delivery_method = :smtp
+
+User.get_gravatars
+
+# ###############################################
